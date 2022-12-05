@@ -1,0 +1,92 @@
+Compile code using gcc main.c -o main -lpthread
+
+
+Test1
+
+./main NNWWEE
+
+one only entry at a time allowed
+
+no marks if deadlock detected
+
+
+
+Test2 
+
+no marks if deadlock detected
+
+
+
+add usleep *before* the crossLane(direction) call in trainThreadFunction
+
+printf("Train Arrived at the lane from the %s direction\n", trainDir);
+...
+
+usleep(1 * 1000 * 1000);
+
+crossLane(direction);
+
+
+./main NWE
+
+all 3 trains first arrive and then exit
+first west exit then north then east
+
+
+Test3
+
+need usleep as before
+
+
+./main NSWE
+
+should print arrive from all 4 directions and deadlock detected , dont cut mark if deadlock detect printed before train arrive print, or deadlock printed more than once
+
+
+Test4:
+
+
+need usleep as before
+
+./main NSWE
+
+exit trains should be printed in clock wise order (starting at any direction) after deadlock detected 
+
+
+test5: Deadlock + multiple train arrive
+
+need usleep as before
+
+
+single arrive lane property during deadlock
+
+./main NSWENSWE
+
+check that multiple trains cant be in the same lane 
+new train shudnt arrive until prev has exited
+
+common mistake: train arrives after deadlock detected without any train exiting.
+
+can have multiple deadlocks
+
+
+
+test6: starvation
+
+no marks if deadlock detected
+
+remove usleep
+
+./main WWWWWWWNWWWWWWW
+
+N should not exit at last
+
+
+test7: large
+
+usleep shud not be there
+
+./main NWSENWSENWSENWSENWSENWSENWSENWSENWEWWSSNSWESNWSENWESSEWSNWSES
+
+
+shuold see deadlocks and no program crashes
