@@ -11,6 +11,7 @@ To prevent crashes and multiple trains entering a lane at the same time, the tra
 * To arrive at a lane, a train blocks the first intersection on the lane in advance.
 * To cross a lane it must block the next intersection on the lane.
 * Since the size of the train is large, it is safe to unblock the intersection points it has blocked earlier only after the train has exited the lane.
+  
 Note that following the above conditions can cause a deadlock. You are required to detect and resolve any deadlock. For this, a separate thread will be running, which periodically checks if there is a deadlock and signals one of the trains to go. You are free to use any synchronization primitives for implementing controllers, and other critical sections/signaling in your code.
 Your submission will be judged on 3 properties:
 * Safety: No crash can occur, and only one train can use a lane at a time.
